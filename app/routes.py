@@ -1,5 +1,6 @@
 from flask import (
     Blueprint,
+    abort,
     flash,
     redirect,
     render_template,
@@ -13,6 +14,15 @@ from .models import User
 
 auth_bp = Blueprint("auth", __name__)
 main_bp = Blueprint("main", __name__)
+
+COURSE_PARTS = [
+    {
+        "id": idx,
+        "title": f"Part {idx}",
+        "description": "Placeholder description — update soon.",
+    }
+    for idx in range(1, 9)
+]
 
 
 @auth_bp.route("/register", methods=["GET", "POST"])
@@ -81,5 +91,24 @@ def index():
 @main_bp.route("/dashboard")
 @login_required
 def dashboard():
-    return render_template("dashboard.html", user=current_user)
+    return render_template("dashboard.html", user=current_user, parts=COURSE_PARTS)
+
+
+@main_bp.route("/parts/<int:part_id>")
+@login_required
+def part_detail(part_id: int):
+    part = next((p for p in COURSE_PARTS if p["id"] == part_id), None)
+    if not part:
+        abort(404)
+    return render_template("part_detail.html", part=part)
+
+
+@main_bp.route("/parts/<int:part_id>/start", methods=["POST"])
+@login_required
+def start_part(part_id: int):
+    part = next((p for p in COURSE_PARTS if p["id"] == part_id), None)
+    if not part:
+        abort(404)
+    flash(f"{part['title']} kicked off. Feel free to explore other parts anytime.", "success")
+    return redirect(url_for("main.dashboard"))
 

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{ part.title }} · L-earnC{% endblock %}
+{% block content %}
+<section class="card part-detail">
+  <p class="breadcrumb"><a href="{{ url_for('main.dashboard') }}">&larr; Back to welcome hub</a></p>
+  <h1>{{ part.title }}</h1>
+  <p class="muted">{{ part.description }}</p>
+  <p>Your progress will appear here once the curriculum is connected.</p>
+  <div class="part-actions">
+    <form action="{{ url_for('main.start_part', part_id=part.id) }}" method="post">
+      <button type="submit">Start {{ part.title }}</button>
+    </form>
+    <a class="btn secondary" href="{{ url_for('main.dashboard') }}">Return to welcome page</a>
+  </div>
+</section>
+{% endblock %}
+

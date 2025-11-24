@@ -1,11 +1,40 @@
 {% extends "base.html" %}
 {% block title %}Dashboard · L-earnC{% endblock %}
 {% block content %}
-<section class="card">
-  <h1>Welcome to L-earnC</h1>
-  <p>You are signed in as {{ user.email }}.</p>
-  <p>This dashboard will soon guide learners through hands-on C coding lessons.</p>
-  <a class="btn" href="{{ url_for('auth.logout') }}">Log out</a>
+<section class="card hero">
+  <div class="hero-copy">
+    <p class="eyebrow">Personalized track</p>
+    <h1>Welcome {{ user.email }}!<br>Let's learn C today!</h1>
+    <p>Jump into any part, experiment with challenges, and return here whenever you need a boost.</p>
+    <div class="hero-actions">
+      <a class="btn" href="{{ url_for('auth.logout') }}">Log out</a>
+    </div>
+  </div>
+  <div class="hero-animation" aria-hidden="true">
+    <div class="block block-left"></div>
+    <div class="block block-right"></div>
+    <div class="block block-merged"></div>
+  </div>
+</section>
+
+<section class="packs">
+  <header class="packs-header">
+    <p class="eyebrow">Course packs</p>
+    <h2>Choose a part to join</h2>
+    <p class="muted">Each part unlocks focused practice. Start anywhere, return anytime.</p>
+  </header>
+  <div class="pack-grid">
+    {% for part in parts %}
+    <article class="pack-card">
+      <div>
+        <p class="pack-label">Part {{ "%02d"|format(part.id) }}</p>
+        <h3>{{ part.title }}</h3>
+        <p>{{ part.description }}</p>
+      </div>
+      <a class="btn secondary" href="{{ url_for('main.part_detail', part_id=part.id) }}">Join</a>
+    </article>
+    {% endfor %}
+  </div>
 </section>
 {% endblock %}
 
