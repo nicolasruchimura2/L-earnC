@@ -3,35 +3,63 @@
 {% block content %}
 <section class="card hero">
   <div class="hero-copy">
-    <p class="eyebrow">Personalized track</p>
-    <h1>Welcome {{ user.email }}!<br>Let's learn C today!</h1>
-    <p>Jump into any part, experiment with challenges, and return here whenever you need a boost.</p>
-    <div class="hero-actions">
-      <a class="btn" href="{{ url_for('auth.logout') }}">Log out</a>
+    <p class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      Best C programming legion
+    </p>
+    <h1>Welcome back, <span class="highlight">{{ user.email.split('@')[0] }}</span>!<br>Let's learn C today!</h1>
+    <p class="hero-description">Jump into any part, experiment with challenges, and return here whenever you need a boost. Master the fundamentals and build something amazing with us!`</p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">{{ parts|length }}</span>
+        <span class="stat-label">Parts available</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">∞</span>
+        <span class="stat-label">Possibilities</span>
+      </div>
     </div>
   </div>
   <div class="hero-animation" aria-hidden="true">
-    <div class="block block-left"></div>
-    <div class="block block-right"></div>
-    <div class="block block-merged"></div>
+    <div class="block block-left">
+      <span class="block-label">L-earn</span>
+    </div>
+    <div class="block block-right">
+      <span class="block-label">C</span>
+    </div>
+    <div class="block block-merged">
+      <span class="block-label merged-label">L-earn&nbsp;C</span>
+    </div>
   </div>
 </section>
 
 <section class="packs">
   <header class="packs-header">
-    <p class="eyebrow">Course packs</p>
-    <h2>Choose a part to join</h2>
+    <p class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      Course packs
+    </p>
+    <h2>What is it going to be today?</h2>
     <p class="muted">Each part unlocks focused practice. Start anywhere, return anytime.</p>
   </header>
   <div class="pack-grid">
     {% for part in parts %}
     <article class="pack-card">
-      <div>
+      <div class="pack-card-header">
+        <div class="pack-number">{{ "%02d"|format(part.id) }}</div>
         <p class="pack-label">Part {{ "%02d"|format(part.id) }}</p>
+      </div>
+      <div class="pack-card-body">
         <h3>{{ part.title }}</h3>
         <p>{{ part.description }}</p>
       </div>
-      <a class="btn secondary" href="{{ url_for('main.part_detail', part_id=part.id) }}">Join</a>
+      <div class="pack-card-footer">
+        <a class="btn secondary" href="{{ url_for('main.part_detail', part_id=part.id) }}">
+          <span>Join</span>
+          <span class="btn-icon">→</span>
+        </a>
+      </div>
     </article>
     {% endfor %}
   </div>

@@ -5,12 +5,36 @@
   <p class="breadcrumb"><a href="{{ url_for('main.dashboard') }}">&larr; Back to welcome hub</a></p>
   <h1>{{ part.title }}</h1>
   <p class="muted">{{ part.description }}</p>
-  <p>Your progress will appear here once the curriculum is connected.</p>
-  <div class="part-actions">
-    <form action="{{ url_for('main.start_part', part_id=part.id) }}" method="post">
-      <button type="submit">Start {{ part.title }}</button>
-    </form>
-    <a class="btn secondary" href="{{ url_for('main.dashboard') }}">Return to welcome page</a>
+</section>
+
+<section class="packs">
+  <header class="packs-header">
+    <p class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      Classes
+    </p>
+    <h2>Available Classes</h2>
+    <p class="muted">Complete each class to master {{ part.title }}.</p>
+  </header>
+  <div class="pack-grid">
+    {% for class_item in part.classes %}
+    <article class="pack-card">
+      <div class="pack-card-header">
+        <div class="pack-number">{{ "%02d"|format(class_item.id) }}</div>
+        <p class="pack-label">Class {{ "%02d"|format(class_item.id) }}</p>
+      </div>
+      <div class="pack-card-body">
+        <h3>{{ class_item.title }}</h3>
+        <p>{{ class_item.description }}</p>
+      </div>
+      <div class="pack-card-footer">
+        <a class="btn secondary" href="#">
+          <span>Start Class</span>
+          <span class="btn-icon">→</span>
+        </a>
+      </div>
+    </article>
+    {% endfor %}
   </div>
 </section>
 {% endblock %}

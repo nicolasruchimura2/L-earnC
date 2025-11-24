@@ -15,13 +15,75 @@ from .models import User
 auth_bp = Blueprint("auth", __name__)
 main_bp = Blueprint("main", __name__)
 
+# ============================================================================
+# COURSE PARTS CONFIGURATION
+# ============================================================================
+# Each part can be personalized with unique titles and descriptions.
+# Each part contains 10 classes - customize them individually below.
+# ============================================================================
+
+def create_classes(part_id, class_titles=None, class_descriptions=None):
+    """Helper function to create 10 classes for a part with optional customization."""
+    classes = []
+    for class_idx in range(1, 11):
+        title = class_titles[class_idx - 1] if class_titles and len(class_titles) > class_idx - 1 else f"Class {class_idx:02d}"
+        desc = class_descriptions[class_idx - 1] if class_descriptions and len(class_descriptions) > class_idx - 1 else f"Learn essential concepts in Part {part_id}, Class {class_idx:02d}."
+        classes.append({
+            "id": class_idx,
+            "title": title,
+            "description": desc,
+        })
+    return classes
+
 COURSE_PARTS = [
     {
-        "id": idx,
-        "title": f"Part {idx}",
-        "description": "Placeholder description — update soon.",
-    }
-    for idx in range(1, 9)
+        "id": 1,
+        "title": "Part 1: Fundamentals",
+        "description": "Begin your C programming journey! Learn the fundamentals, syntax basics, and write your first programs. Perfect for absolute beginners.",
+        "classes": create_classes(1),
+    },
+    {
+        "id": 2,
+        "title": "Part 2: Variables & Data Types",
+        "description": "Master variables, constants, and data types in C. Understand memory allocation, type casting, and how to work with different numeric and character types.",
+        "classes": create_classes(2),
+    },
+    {
+        "id": 3,
+        "title": "Part 3: Control Flow",
+        "description": "Learn conditional statements, loops, and program flow control. Master if-else, switch, for, while, and do-while loops to build dynamic programs.",
+        "classes": create_classes(3),
+    },
+    {
+        "id": 4,
+        "title": "Part 4: Functions & Scope",
+        "description": "Dive into functions, parameters, return values, and variable scope. Learn to write reusable, modular code and understand recursion.",
+        "classes": create_classes(4),
+    },
+    {
+        "id": 5,
+        "title": "Part 5: Arrays & Strings",
+        "description": "Work with arrays, multidimensional arrays, and string manipulation. Learn essential algorithms for searching, sorting, and string operations.",
+        "classes": create_classes(5),
+    },
+    {
+        "id": 6,
+        "title": "Part 6: Pointers & Memory",
+        "description": "Master pointers, memory addresses, and dynamic memory allocation. Understand the power and pitfalls of pointer arithmetic and memory management.",
+        "classes": create_classes(6),
+    },
+    {
+        "id": 7,
+        "title": "Part 7: Structures & Unions",
+        "description": "Learn to create custom data types with structures and unions. Organize complex data and build more sophisticated programs.",
+        "classes": create_classes(7),
+    },
+    {
+        "id": 8,
+        "title": "Part 8: Advanced Topics",
+        "description": "Explore file I/O, preprocessor directives, error handling, and advanced C features. Prepare for real-world programming challenges.",
+        "classes": create_classes(8),
+    },
 ]
 
 

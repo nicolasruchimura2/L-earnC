@@ -1,18 +1,82 @@
 {% extends "base.html" %}
 {% block title %}Login · L-earnC{% endblock %}
+{% block body_class %}auth-page{% endblock %}
 {% block content %}
-<section class="card">
-  <h1>Sign in</h1>
-  <form method="post" class="form">
-    <label>Email
-      <input type="email" name="email" required>
-    </label>
-    <label>Password
-      <input type="password" name="password" required>
-    </label>
-    <button type="submit">Login</button>
-  </form>
-  <p class="muted">New here? <a href="{{ url_for('auth.register') }}">Create an account</a>.</p>
+<section class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <div class="auth-icon">
+        <span class="icon-bracket">/<span>
+      </div>
+      <h1>Sign in</h1>
+      <p class="auth-subtitle">Join us and solidify your C programming skills!</p>
+    </div>
+    <form method="post" class="form">
+      <label>
+        <span class="label-text">Email</span>
+        <input type="email" name="email" placeholder="your.email@example.com" required>
+      </label>
+      <label>
+        <span class="label-text">Password</span>
+        <input type="password" name="password" placeholder="••••••••" required>
+      </label>
+      <button type="submit" class="btn-primary">
+        <span>Login</span>
+        <span class="btn-arrow">→</span>
+      </button>
+    </form>
+    <div class="auth-footer">
+      <p class="muted">New here? <a href="{{ url_for('auth.register') }}" class="auth-link">Create an account</a>.</p>
+    </div>
+  </div>
+  <div class="auth-decoration">
+    <div class="code-snippet">
+      <div class="code-line typing-line">
+        <span class="code-char" style="--i: 0"><span class="code-directive">#include</span></span>
+        <span class="code-char" style="--i: 1"> </span>
+        <span class="code-char" style="--i: 2"><span class="code-string">&lt;stdio.h&gt;</span></span>
+      </div>
+      <div class="code-line typing-line">
+        <span class="code-char" style="--i: 3"><span class="code-directive">#include</span></span>
+        <span class="code-char" style="--i: 4"> </span>
+        <span class="code-char" style="--i: 5"><span class="code-string">&lt;stdlib.h&gt;</span></span>
+      </div>
+      <div class="code-line typing-line">
+        <span class="code-char" style="--i: 6">&nbsp;</span>
+      </div>
+      <div class="code-line typing-line">
+        <span class="code-char" style="--i: 7"><span class="code-keyword">int</span></span>
+        <span class="code-char" style="--i: 8"> </span>
+        <span class="code-char" style="--i: 9"><span class="code-var">main</span></span>
+        <span class="code-char" style="--i: 10"><span class="code-paren">()</span></span>
+        <span class="code-char" style="--i: 11"> </span>
+        <span class="code-char" style="--i: 12"><span class="code-brace">{</span></span>
+      </div>
+      <div class="code-line typing-line indent">
+        <span class="code-char" style="--i: 13">  </span>
+        <span class="code-char" style="--i: 14"><span class="code-func">printf</span></span>
+        <span class="code-char" style="--i: 15"><span class="code-paren">(</span></span>
+        <span class="code-char" style="--i: 16"><span class="code-string">"</span></span>
+        <span class="code-char typing-word" style="--i: 17">
+          <span class="code-string typing-string" style="--typing-length: 13; --typing-delay: 1.8s;">Hello, L-earnC!</span>
+        </span>
+        <span class="code-char" style="--i: 18"><span class="code-string">"</span></span>
+        <span class="code-char" style="--i: 19"><span class="code-paren">)</span></span>
+        <span class="code-char" style="--i: 20"><span class="code-paren">;</span></span>
+      </div>
+      <div class="code-line typing-line indent">
+        <span class="code-char" style="--i: 21">  </span>
+        <span class="code-char" style="--i: 22"><span class="code-keyword">return</span></span>
+        <span class="code-char" style="--i: 23"> </span>
+        <span class="code-char" style="--i: 24"><span class="code-number">0</span></span>
+        <span class="code-char" style="--i: 25"><span class="code-paren">;</span></span>
+      </div>
+      <div class="code-line typing-line">
+        <span class="code-char" style="--i: 26"><span class="code-brace">}</span></span>
+        <span class="code-cursor">|</span>
+      </div>
+    </div>
+  </div>
 </section>
 {% endblock %}
 
