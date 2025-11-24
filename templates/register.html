@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Register · L-earnC{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Create account</h1>
+  <form method="post" class="form">
+    <label>Email
+      <input type="email" name="email" required>
+    </label>
+    <label>Password
+      <input type="password" name="password" minlength="6" required>
+    </label>
+    <label>Confirm password
+      <input type="password" name="confirm" minlength="6" required>
+    </label>
+    <button type="submit">Register</button>
+  </form>
+  <p class="muted">Already have an account? <a href="{{ url_for('auth.login') }}">Sign in</a>.</p>
+</section>
+{% endblock %}
+

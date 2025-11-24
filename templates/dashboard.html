@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · L-earnC{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Welcome to L-earnC</h1>
+  <p>You are signed in as {{ user.email }}.</p>
+  <p>This dashboard will soon guide learners through hands-on C coding lessons.</p>
+  <a class="btn" href="{{ url_for('auth.logout') }}">Log out</a>
+</section>
+{% endblock %}
+
